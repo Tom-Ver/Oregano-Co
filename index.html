@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Oregano & Co.</title>
+    <script type="module" src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header>
+    <img class="logo" src="afbeeldingen/logo.png" height="50" width="312" alt="Logo Oregano & Co."/>
+    <ul class="navigatiebalk">
+        <li>
+            <a href="#producten">Menu</a>
+        </li>
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+        <li>
+            <img src="afbeeldingen/shopping-cart-svgrepo-com.svg" width="20" height="auto" alt="Winkelwagen logo">
+        </li>
+    </ul>
+</header>
+<main>
+    <section class="dagpromotie">
+        <img src="afbeeldingen/promotiedag2.jpg" height="257" width="479" alt="Promotie van de dag afbeelding"/>
+    </section>
+    <div class="dagpromotietekst">
+        Grijp je kans!
+        <br>
+        <span class="dagpromotietekstkleur"> Alleen vandaag bij aankoop van 1 pizza krijg je de 2de gratis.</span>
+    </div>
+    <h2 class="titel">Onze producten</h2>
+    <div class="filters">
+        <button id="vegTrueBtn">Vegetarisch</button>
+        <button id="vegFalseBtn">Niet vegetarisch</button>
+        <button id="vegAllBtn">Alles</button>
+        <button id="sortHoogBtn">Prijs hoog naar laag</button>
+        <button id="sortLaagBtn">Prijs laag naar hoog</button>
+    </div>
+    <section id="producten">
+        <section id="pizzaSubsection"  class="producten">
+            <h2>Onze pizza's</h2>
+        </section>
+        <section id="pastaSubsection"  class="producten">
+            <h2>Onze pasta's</h2>
+        </section>
+        <section id="saladeSubsection"  class="producten">
+            <h2>Onze salades</h2>
+        </section>
+        <section id="dessertSubsection"  class="producten">
+            <h2>Onze desserten</h2>
+        </section>
+        <section id="drankenSubsection"  class="producten">
+            <h2>Onze dranken</h2>
+        </section>
+    </section>
+    <section id="contact" class="contact">
+
+    </section>
+
+</main>
+<footer>
+
+</footer>
+<dialog id="optiesDialoog">
+    <h2 id="optiesDialoogTitel">Wil je iets extra, of juist niet?</h2>
+    <div id="optiesDialoogKeuze"></div>
+    <div class="optiesDialoogKnoppen">
+        <button id="toevoegenKnop">Toevoegen</button>
+        <button id="sluitenKnop">Sluiten</button>
+    </div>
+</dialog>
+</body>
+</html>
+
