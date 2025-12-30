@@ -253,3 +253,9 @@ async function getOptiesByMenuItem(menuItemId) {
         menuItem.optionIds.includes(optie.id)
     );
 }
+
+function toonWinkelwagen() {
+    // Placeholder functie om winkelwagen te tonen
+    const winkelwagen = getWinkelwagen();
+    alert("Winkelwagen: " + JSON.stringify(winkelwagen));
+}
