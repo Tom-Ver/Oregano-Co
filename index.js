@@ -1,5 +1,4 @@
-import { getAlleMenuItems, getMenuItemById, getOptiesByMenuItem } from "./db-operations.js";
-
+let menuCache = null;
 let geselecteerdeMenuItem = null;
 
 init();
@@ -148,11 +147,6 @@ async function openItemOptiesDialog(menuItem) {
 }
 
 function setEventListeners() {
-    document.getElementById("vegTrueBtn").addEventListener("click", () => filterVeggie('true'));
-    document.getElementById("vegFalseBtn").addEventListener("click", () => filterVeggie('false'));
-    document.getElementById("vegAllBtn").addEventListener("click", () => filterVeggie('all'));
-    document.getElementById("sortHoogBtn").addEventListener("click", () => sorteerPrijs('hoog'));
-    document.getElementById("sortLaagBtn").addEventListener("click", () => sorteerPrijs('laag'));
     //Opties dialoog sluiten
     document.getElementById("sluitenKnop").addEventListener("click", () => {
         geselecteerdeMenuItem = null;
@@ -219,4 +213,43 @@ function saveWinkelwagen(winkelwagen) {
     localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
 }
 
+async function loadMenu() {
+    if (menuCache) return menuCache;
+    const response = await fetch("./db/menu.json");
+    if (!response.ok) {
+        throw new Error("Netwerkfout");
+    }
+    menuCache = await response.json();
+    return menuCache;
+}
 
+async function getAlleMenuItems() {
+    return await loadMenu();
+}
+
+async function getMenuItemById(id) {
+    const menu = await loadMenu();
+    return menu.find(item => item.id === id) || null;
+}
+
+async function getOptiesByMenuItem(menuItemId) {
+    // 1. Menu laden
+    const menu = await loadMenu();
+
+    // 2. Menu-item zoeken
+    const menuItem = menu.find(item => item.id === menuItemId);
+    if (!menuItem) return [];
+
+    // 3. Opties laden
+    const response = await fetch("./db/opties.json");
+    if (!response.ok) {
+        throw new Error("Netwerkfout");
+    }
+
+    const opties = await response.json();
+
+    // 4. Opties filteren op optionIds
+    return opties.filter(optie =>
+        menuItem.optionIds.includes(optie.id)
+    );
+}

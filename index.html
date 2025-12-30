@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Oregano & Co.</title>
-    <script type="module" src="index.js" defer></script>
+    <script src="index.js" defer></script>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -32,11 +32,11 @@
     </div>
     <h2 class="titel">Onze producten</h2>
     <div class="filters">
-        <button id="vegTrueBtn">Vegetarisch</button>
-        <button id="vegFalseBtn">Niet vegetarisch</button>
-        <button id="vegAllBtn">Alles</button>
-        <button id="sortHoogBtn">Prijs hoog naar laag</button>
-        <button id="sortLaagBtn">Prijs laag naar hoog</button>
+        <button onclick="filterVeggie('true')">Vegetarisch</button>
+        <button onclick="filterVeggie('false')">Niet vegetarisch</button>
+        <button onclick="filterVeggie('all')">Alles</button>
+        <button onclick="sorteerPrijs('hoog')">Prijs hoog naar laag</button>
+        <button onclick="sorteerPrijs('laag')">Prijs laag naar hoog</button>
     </div>
     <section id="producten">
         <section id="pizzaSubsection"  class="producten">
