@@ -53,7 +53,7 @@ function maakMenuItem(menuItem, sectionId) {
     const title = document.createElement("h2");
     const prijs = document.createElement("p");
 
-    const afbeelding = menuItem.image ? { type: menuItem.image } : null;
+    const afbeelding = menuItem.afbeelding ? { type: menuItem.afbeelding } : null;
 
     title.innerText = menuItem.name;
     prijs.innerText = "€" + menuItem.price;
@@ -120,14 +120,12 @@ function sorteerPrijs(orde) {
     });
 }
 
-async function openItemOptiesDialog(menuItem) {
+function openItemOptiesDialog(menuItem) {
     geselecteerdeMenuItem = menuItem;
-
-    const opties = await getOptiesByMenuItem(menuItem.id);
     const optiesDiv = document.getElementById("optiesDialoogKeuze");
     optiesDiv.innerHTML = "";
 
-    opties.forEach(optie => {
+    menuItem.options.forEach(optie => {
         const label = document.createElement("label");
         const checkbox = document.createElement("input");
 
@@ -215,7 +213,7 @@ function saveWinkelwagen(winkelwagen) {
 
 async function loadMenu() {
     if (menuCache) return menuCache;
-    const response = await fetch("./db/menu.json");
+    const response = await fetch("./menu.json");
     if (!response.ok) {
         throw new Error("Netwerkfout");
     }
@@ -230,28 +228,6 @@ async function getAlleMenuItems() {
 async function getMenuItemById(id) {
     const menu = await loadMenu();
     return menu.find(item => item.id === id) || null;
-}
-
-async function getOptiesByMenuItem(menuItemId) {
-    // 1. Menu laden
-    const menu = await loadMenu();
-
-    // 2. Menu-item zoeken
-    const menuItem = menu.find(item => item.id === menuItemId);
-    if (!menuItem) return [];
-
-    // 3. Opties laden
-    const response = await fetch("./db/opties.json");
-    if (!response.ok) {
-        throw new Error("Netwerkfout");
-    }
-
-    const opties = await response.json();
-
-    // 4. Opties filteren op optionIds
-    return opties.filter(optie =>
-        menuItem.optionIds.includes(optie.id)
-    );
 }
 
 function toonWinkelwagen() {

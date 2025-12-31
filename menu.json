@@ -1,0 +1,226 @@
+[
+  {
+    "id": 1,
+    "name": "Pizza Margherita",
+    "category": "Pizza",
+    "price": 9.5,
+    "veggie": true,
+    "ingredients": ["Tomato", "Mozzarella", "Basil"],
+    "options": [
+      { "key": "extra_mozzarella", "label": "Extra mozzarella", "type": "extra", "price": 2.0 },
+      { "key": "extra_garlic_oil", "label": "Extra garlic oil", "type": "extra", "price": 1.5 },
+      { "key": "extra_chili_flakes", "label": "Extra chili flakes", "type": "extra", "price": 0.5 },
+      { "key": "no_basil", "label": "No basil", "type": "omit", "price": 0 },
+      { "key": "no_cheese", "label": "No cheese", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 5,
+    "available": true,
+    "tags": ["classic", "light"],
+    "afbeelding": "afbeeldingen/pizza-margherita.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Pizza Pepperoni",
+    "category": "Pizza",
+    "price": 11.0,
+    "veggie": false,
+    "ingredients": ["Tomato", "Mozzarella", "Pepperoni"],
+    "options": [
+      { "key": "extra_pepperoni", "label": "Extra pepperoni", "type": "extra", "price": 2.0 },
+      { "key": "extra_cheese", "label": "Extra cheese", "type": "extra", "price": 2.0 },
+      { "key": "garlic_dip", "label": "Garlic dip", "type": "extra", "price": 1.0 },
+      { "key": "no_pepperoni", "label": "No pepperoni", "type": "omit", "price": 0 },
+      { "key": "no_cheese", "label": "No cheese", "type": "omit", "price": 0 },
+      { "key": "no_tomato_sauce", "label": "No tomato sauce", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 4,
+    "available": true,
+    "tags": ["spicy", "popular"],
+    "afbeelding": "afbeeldingen/pizza-pepperoni.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Pizza Funghi",
+    "category": "Pizza",
+    "price": 10.5,
+    "veggie": true,
+    "ingredients": ["Tomato", "Mozzarella", "Mushrooms"],
+    "options": [
+      { "key": "extra_mushrooms", "label": "Extra mushrooms", "type": "extra", "price": 1.5 },
+      { "key": "truffle_oil", "label": "Truffle oil", "type": "extra", "price": 2.5 },
+      { "key": "extra_parmesan", "label": "Extra parmesan", "type": "extra", "price": 1.5 },
+      { "key": "no_mushrooms", "label": "No mushrooms", "type": "omit", "price": 0 },
+      { "key": "no_cheese", "label": "No cheese", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 4,
+    "available": true,
+    "tags": ["umami", "vegetarian"],
+    "afbeelding": "afbeeldingen/pizza-funghi.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Spaghetti Bolognese",
+    "category": "Pasta",
+    "price": 12.0,
+    "veggie": false,
+    "ingredients": ["Spaghetti", "Beef mince", "Tomato sauce", "Parmesan", "Onion"],
+    "options": [
+      { "key": "extra_beef", "label": "Extra beef", "type": "extra", "price": 2.0 },
+      { "key": "extra_parmesan", "label": "Extra parmesan", "type": "extra", "price": 1.5 },
+      { "key": "extra_sauce", "label": "Extra sauce", "type": "extra", "price": 1.0 },
+      { "key": "no_cheese", "label": "No cheese", "type": "omit", "price": 0 },
+      { "key": "no_onions", "label": "No onions", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 4,
+    "available": true,
+    "tags": ["hearty"],
+    "afbeelding": "afbeeldingen/spaghetti-bolognese.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Tagliatelle Carbonara",
+    "category": "Pasta",
+    "price": 13.0,
+    "veggie": false,
+    "ingredients": ["Tagliatelle", "Pancetta", "Egg", "Parmesan", "Black pepper"],
+    "options": [
+      { "key": "extra_pancetta", "label": "Extra pancetta", "type": "extra", "price": 2.0 },
+      { "key": "extra_parmesan", "label": "Extra parmesan", "type": "extra", "price": 1.5 },
+      { "key": "cream_splash", "label": "Cream splash", "type": "extra", "price": 0.8 },
+      { "key": "no_pancetta", "label": "No pancetta", "type": "omit", "price": 0 },
+      { "key": "no_pepper", "label": "No pepper", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 3,
+    "available": true,
+    "tags": ["rich"],
+    "afbeelding": "afbeeldingen/tagliatelle-carbonara.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Penne Arrabbiata",
+    "category": "Pasta",
+    "price": 11.0,
+    "veggie": true,
+    "ingredients": ["Penne", "Tomato sauce", "Garlic", "Chili", "Parsley"],
+    "options": [
+      { "key": "extra_chili", "label": "Extra chili", "type": "extra", "price": 0.5 },
+      { "key": "extra_garlic", "label": "Extra garlic", "type": "extra", "price": 0.5 },
+      { "key": "extra_parmesan", "label": "Extra parmesan", "type": "extra", "price": 1.5 },
+      { "key": "no_chili", "label": "No chili", "type": "omit", "price": 0 },
+      { "key": "no_garlic", "label": "No garlic", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 4,
+    "available": true,
+    "tags": ["spicy", "vegan-option"],
+    "afbeelding": "afbeeldingen/penne-arrabbiata.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Caesar Salad",
+    "category": "Salad",
+    "price": 8.5,
+    "veggie": false,
+    "ingredients": ["Romaine", "Croutons", "Parmesan", "Caesar dressing", "Chicken"],
+    "options": [
+      { "key": "extra_chicken", "label": "Extra chicken", "type": "extra", "price": 2.0 },
+      { "key": "extra_parmesan", "label": "Extra parmesan", "type": "extra", "price": 1.5 },
+      { "key": "no_croutons", "label": "No croutons", "type": "omit", "price": 0 },
+      { "key": "no_dressing", "label": "No dressing", "type": "omit", "price": 0 },
+      { "key": "no_cheese", "label": "No cheese", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 5,
+    "available": true,
+    "tags": ["fresh"],
+    "afbeelding": "afbeeldingen/caesar-salad.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Greek Salad",
+    "category": "Salad",
+    "price": 8.0,
+    "veggie": true,
+    "ingredients": ["Tomato", "Cucumber", "Red onion", "Feta", "Olives", "Oregano"],
+    "options": [
+      { "key": "extra_feta", "label": "Extra feta", "type": "extra", "price": 1.5 },
+      { "key": "extra_olives", "label": "Extra olives", "type": "extra", "price": 1.0 },
+      { "key": "no_onions", "label": "No onions", "type": "omit", "price": 0 },
+      { "key": "no_olives", "label": "No olives", "type": "omit", "price": 0 },
+      { "key": "no_cheese", "label": "No cheese", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 5,
+    "available": true,
+    "tags": ["mediterranean", "vegetarian"],
+    "afbeelding": "afbeeldingen/greek-salad.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Tiramisu",
+    "category": "Dessert",
+    "price": 5.5,
+    "veggie": true,
+    "ingredients": ["Ladyfingers", "Mascarpone", "Coffee", "Cocoa"],
+    "options": [
+      { "key": "extra_cocoa", "label": "Extra cocoa", "type": "extra", "price": 0.3 },
+      { "key": "extra_mascarpone", "label": "Extra mascarpone", "type": "extra", "price": 1.0 },
+      { "key": "no_cocoa", "label": "No cocoa", "type": "omit", "price": 0 },
+      { "key": "no_coffee", "label": "No coffee", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 6,
+    "available": true,
+    "tags": ["sweet", "classic"],
+    "afbeelding": "afbeeldingen/tiramisu.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Cheesecake",
+    "category": "Dessert",
+    "price": 5.5,
+    "veggie": true,
+    "ingredients": ["Cream cheese", "Sugar", "Eggs", "Biscuit base"],
+    "options": [
+      { "key": "strawberry_coulis", "label": "Strawberry coulis", "type": "extra", "price": 1.0 },
+      { "key": "extra_cream", "label": "Extra whipped cream", "type": "extra", "price": 0.5 },
+      { "key": "no_cream", "label": "No whipped cream", "type": "omit", "price": 0 },
+      { "key": "no_topping", "label": "No topping", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 6,
+    "available": true,
+    "tags": ["sweet"],
+    "afbeelding": "afbeeldingen/cheesecake.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Fresh Lemonade",
+    "category": "Drinks",
+    "price": 3.5,
+    "veggie": true,
+    "ingredients": ["Lemon", "Water", "Sugar", "Ice"],
+    "options": [
+      { "key": "mint_leaves", "label": "Mint leaves", "type": "extra", "price": 0.5 },
+      { "key": "large_size", "label": "Large size", "type": "extra", "price": 1.0 },
+      { "key": "no_ice", "label": "No ice", "type": "omit", "price": 0 },
+      { "key": "no_sugar", "label": "No sugar", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 8,
+    "available": true,
+    "tags": ["refreshing"],
+    "afbeelding": "afbeeldingen/fresh-lemonade.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Espresso",
+    "category": "Drinks",
+    "price": 2.5,
+    "veggie": true,
+    "ingredients": ["Coffee beans", "Water"],
+    "options": [
+      { "key": "double_shot", "label": "Double shot", "type": "extra", "price": 1.0 },
+      { "key": "lemon_zest", "label": "Lemon zest", "type": "extra", "price": 0.3 },
+      { "key": "no_sugar", "label": "No sugar", "type": "omit", "price": 0 }
+    ],
+    "maxPerOrder": 8,
+    "available": true,
+    "tags": ["hot"],
+    "afbeelding": "afbeeldingen/espresso.jpg"
+  }
+]
