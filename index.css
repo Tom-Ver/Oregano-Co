@@ -32,6 +32,11 @@ header {
     display: inline-block;
 }
 
+li form div img {
+    width: 20px;
+    height: 20px;
+}
+
 .logo {
     align-content: center;
     padding: 10px;
@@ -105,14 +110,147 @@ header {
     border-radius: 10px;
 }
 
+.filters {
+    margin-left: 225px;
+}
+
 .filters button {
     border: 1px #FFB400 solid;
+    background-color: #ffb400;
+    color: #ffffff;
     border-radius: 10px;
-    color: #FFB400;
     padding: 10px;
+    margin-top: 10px;
     text-align: center;
     height: auto;
 }
 
+.menu-item .winkelwagenKnop {
+    margin-left: 10px;
+}
 
+#optiesDialoog {
+    background: #ffffff;
+    color: #3C36A1;
+}
 
+#optiesDialoog button {
+    border: 1px #FFB400 solid;
+    background-color: #ffb400;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    height: auto;
+}
+
+.forminloggen {
+    max-width: 360px;
+    border-radius: 16px;
+    border: 3px #FFB400 solid;
+    margin: 40px auto;
+}
+
+#gebruikersnaam {
+    border-radius: 8px;
+    border: 1px #3c36a1 solid;
+    margin: 5px;
+    padding: 5px;
+}
+
+#wachtwoord {
+    border-radius: 8px;
+    border: 1px #3c36a1 solid;
+    padding: 5px
+}
+
+form button {
+    border: 1px #FFB400 solid;
+    background-color: #ffb400;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    height: auto;
+}
+
+.profielafbeeldinggroep {
+    text-align: center;
+    margin: 28px 0 16px 0;
+}
+
+.profielafbeelding {
+    width: 30%;
+    border-radius: 50%;
+}
+
+.inloggen {
+    padding: 10px;
+}
+
+.kortingopenen {
+    background-color: #ffb400;
+    color: #ffffff;
+    padding: 16px 20px;
+    border: none;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+}
+
+#kortingsdialog {
+    background: #ffffff;
+    color: #3C36A1;
+}
+
+.formdialog {
+    align-content: center;
+}
+
+#reserveren {
+    width: 50%;
+    height: auto;
+    margin: 60px auto;
+    color: #ffffff;
+    border-radius: 15px;
+    background-color: #3c36a1;
+    padding: 5px;
+}
+
+#naam, #email, #telefoon, #datum, #tijd, #aantalPersonen {
+    border-radius: 8px;
+    border: 1px #3c36a1 solid;
+    margin: 5px;
+    padding: 5px;
+}
+
+.foutmelding {
+    color: #ffb400;
+    margin-left: 5px;
+    display: block;
+}
+
+#max-alert {
+    text-align: center;
+    padding: 10px;
+    color: #3c36a1;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+footer li {
+    list-style-type: none;
+    display: inline;
+    margin-right: 20px;
+}
+
+footer {
+    background-color: #FFB400;
+    color: #ffffff;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+}
