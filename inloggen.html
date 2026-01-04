@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Oregano & Co. inloggen</title>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <img class="logo" src="afbeeldingen/logo.png" height="50" width="312" alt="Logo Oregano & Co."/>
+        <nav>
+            <ul class="navigatiebalk">
+                <li>
+                    <a href="index.html"><img src="afbeeldingen/startwit.svg" alt="start knop" width="20" height="auto"></a>
+                </li>
+                <li onclick="toonWinkelwagen()">
+                    <img src="afbeeldingen/shopping-cart-svgrepo-com.svg" alt="Winkelwagen logo" width="20" height="auto">
+                </li>
+                <li>
+                    <a href="inloggen.html"><img src="afbeeldingen/profilewit.svg" alt="inloggen logo" width="20" height="auto"></a>
+                </li>
+                <li>
+                    <a href="#producten">Menu</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+                <li>
+                    <a href="boekingspagina.html">Reserveren</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form class="forminloggen" action="/website-voorbeelden/forms/submit.html" method="post">
+            <div class="profielafbeeldinggroep">
+                <img src="afbeeldingen/profileblauw.svg" alt="profielfoto" class="profielafbeelding">
+            </div>
+
+            <div class="inloggen">
+                <label for="gebruikersnaam">Gebruikersnaam</label>
+                <input type ="text" id="gebruikersnaam" name="gebruikersnaam" required>
+
+                <label for="wachtwoord">Wachtwoord</label>
+                <input type="password" id="wachtwoord" name="wachtwoord">
+            </div>
+
+            <div class="inloggen">
+                <button type="button" class="terug">terug</button>
+                <button type="button" onclick="login()">Login</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <div class="openingstijden">
+            <h3>Openingstijden</h3>
+            <ul>
+                <li>Maandag: Gesloten</li>
+                <li>Dinsdag: 11:00 - 22:00</li>
+                <li>Woensdag: 11:00 - 22:00</li>
+                <br>
+                <li>Donderdag: 11:00 - 22:00</li>
+                <li>Vrijdag: 11:00 - 23:00</li>
+                <li>Zaterdag: 11:00 - 23:00</li>
+                <li>Zondag: 11:00 - 21:00</li>
+            </ul>
+        </div>
+        <div class="contact" id="contact">
+            <h3>Contact</h3>
+            <p>Adres: Oreganostraat 1, 3473 Waanrode Telefoon: 04 25 25 25 25 Email: oregano&co@gmail.com</p>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Oregano & Co. Alle rechten voorbehouden.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
