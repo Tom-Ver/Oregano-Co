@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Oregano & Co.</title>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header>
+    <img class="logo" src="afbeeldingen/logo.png" height="50" width="312" alt="Logo Oregano & Co."/>
+    <nav>
+        <ul class="navigatiebalk">
+            <li>
+                <a href="index.html"><img src="afbeeldingen/startwit.svg" alt="start knop" width="20" height="auto"></a>
+            </li>
+            <li onclick="toonWinkelwagen()">
+                <img src="afbeeldingen/shopping-cart-svgrepo-com.svg" alt="Winkelwagen logo" width="20" height="auto">
+            </li>
+            <li>
+                <a href="inloggen.html"><img src="afbeeldingen/profilewit.svg" alt="inloggen logo" width="20" height="auto"></a>
+            </li>
+            <li>
+                <a href="#producten">Menu</a>
+            </li>
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+            <li>
+                <a href="boekingspagina.html">Reserveren</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section id="reserveren">
+        <h2>Reserveren</h2>
+
+        <br>
+
+        <form class="reserveringsformulier" action="/website-voorbeelden/forms/submit.html" method="post">
+            <label for="naam">Naam:</label>
+            <input type="text" id="naam" name="naam" required>
+            <span class="foutmelding"></span>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            <span class="foutmelding"></span>
+
+            <br>
+
+            <label for="telefoon">Telefoonnummer:</label>
+            <input type="tel" id="telefoon" name="telefoon" required>
+            <span class="foutmelding"></span>
+
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" name="datum" required>
+            <span class="foutmelding"></span>
+
+            <br>
+
+            <label for="tijd">Tijd:</label>
+            <input type="time" id="tijd" name="tijd" required>
+            <span class="foutmelding"></span>
+
+            <label for="aantalPersonen">Aantal personen:</label>
+            <input type="number" id="aantalPersonen" name="aantalPersonen" min="1" required>
+            <span class="foutmelding"></span>
+
+            <br>
+
+            <button type="submit">Reserveren</button>
+        </form>
+    </section>
+</main>
+<footer>
+    <div class="openingstijden">
+        <h3>Openingstijden</h3>
+        <ul>
+            <li>Maandag: Gesloten</li>
+            <li>Dinsdag: 11:00 - 22:00</li>
+            <li>Woensdag: 11:00 - 22:00</li>
+            <br>
+            <li>Donderdag: 11:00 - 22:00</li>
+            <li>Vrijdag: 11:00 - 23:00</li>
+            <li>Zaterdag: 11:00 - 23:00</li>
+            <li>Zondag: 11:00 - 21:00</li>
+        </ul>
+    </div>
+    <div class="contact" id="contact">
+        <h3>Contact</h3>
+        <p>Adres: Oreganostraat 1, 3473 Waanrode Telefoon: 04 25 25 25 25 Email: oregano&co@gmail.com</p>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2025 Oregano & Co. Alle rechten voorbehouden.</p>
+    </div>
+</footer>
+
+</body>
+</html>
