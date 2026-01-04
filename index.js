@@ -383,3 +383,8 @@ function openkortingformulier() {
 function sluitkortingformulier() {
     document.getElementById("kortingdialog").close();
 }
+
+function verstuurReservering() {
+    alert("Reservering verzonden! We kijken ernaar uit je te verwelkomen.");
+}
+
