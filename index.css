@@ -209,3 +209,48 @@ form button {
 .formdialog {
     align-content: center;
 }
+
+#reserveren {
+    width: 50%;
+    height: auto;
+    margin: 60px auto;
+    color: #ffffff;
+    border-radius: 15px;
+    background-color: #3c36a1;
+    padding: 5px;
+}
+
+#naam, #email, #telefoon, #datum, #tijd, #aantalPersonen {
+    border-radius: 8px;
+    border: 1px #3c36a1 solid;
+    margin: 5px;
+    padding: 5px;
+}
+
+.foutmelding {
+    color: #ffb400;
+    margin-left: 5px;
+    display: block;
+}
+
+#max-alert {
+    text-align: center;
+    padding: 10px;
+    color: #3c36a1;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+footer li {
+    list-style-type: none;
+    display: inline;
+    margin-right: 20px;
+}
+
+footer {
+    background-color: #FFB400;
+    color: #ffffff;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+}
