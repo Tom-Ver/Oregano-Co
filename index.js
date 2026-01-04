@@ -122,7 +122,6 @@ function maakMenuItem(menuItem, sectionId) {
     article.appendChild(winkelwagenKnop);
     productenElement.appendChild(article);
     winkelwagenKnop.classList.add("winkelwagenKnop");
-
 }
 
 function filterVeggie(keuze) {
@@ -229,7 +228,7 @@ function itemToevoegen(menuItem) {
     if (bestaandItem) {
 
         if (bestaandItem.aantal + 1 > bestaandItem.maxAantal) {
-            toonMaximumMelding(menuItem.name, bestanaadItem.maxAantal);
+            toonMaximumMelding(bestaandItem.maxAantal, menuItem.name);
             return;
         }
         // Item bestaat al, verhoog aantal
@@ -246,21 +245,12 @@ function itemToevoegen(menuItem) {
     document.getElementById("optiesDialoog").close();
 }
 
-function toonMaximumMelding(itemNaam, maxAantal) {
-    let alertBoodschap = document.getElementById("max-alert");
-    if (!alertBoodschap) {
-        alertBoodschap = document.createElement("div");
-        alertBoodschap.id = "max-alert";
-        alertBoodschap.style.color = "#3c36a1";
-        alertBoodschap.style.margin = "10px";
-        document.body.prepend(alertBoodschap);
-    }
+function toonMaximumMelding(maxAantal, itemNaam) {
+    const alertDiv = document.getElementById("max-alert");
 
-    alertBoodschap.innerText = `Je kunt niet meer dan ${maxAantal} van ${itemNaam} toevoegen aan je winkelmand.`;
+    if (!alertDiv) return;
 
-    setTimeout(() => {
-        alertBoodschap.innerText = "";
-    }, 3000);
+    alertDiv.innerText = `Je kunt niet meer dan ${maxAantal} van ${itemNaam} toevoegen aan je winkelmand.`;
 }
 
 function getWinkelwagen() {
@@ -346,6 +336,45 @@ function login() {
     } else { alert("Inloggen mislukt, foutieve gebruikersnaam of wachtwoord.");
     }
 }
+
+function foutBericht(id) {
+    const berichten = {
+        naam: 'vul je naam in',
+        email: 'vul een geldige email in',
+        telefoon: 'vul je telefoonnummer in',
+        datum: 'kies een datum',
+        tijd: 'kies een tijd',
+        aantalPersonen: 'vul minimaal 1 persoon in'
+    };
+    return berichten[id] || 'Dit veld is verplicht.';
+    }
+
+    const form = document.querySelector(".reserveringsformulier");
+
+    if (form) {
+        form.addEventListener("submit", async e => {
+            e.preventDefault();
+            let valid = true;
+
+            form.querySelectorAll('.foutmelding').forEach(span=> span.textContent='');
+
+            const velden = ['naam', 'email', 'telefoon', 'datum', 'tijd', 'aantalPersonen'];
+
+            velden.forEach(id => {
+                const input = document.getElementById(id);
+                const foutSpan = input.nextElementSibling;
+
+                if (!input.value.trim() ||
+                    (id === 'email' && !/^[^]+@[^ ]+\.[a-z]{2,3}$/.test(input.value)) ||
+                    (id === 'aantalPersonen' && Number(input.value) < 1)) {
+                    foutSpan.textContent = foutBericht(id);
+                    valid = false;
+                }
+            });
+
+            if(valid) form.submit();
+        });
+    }
 
 function openkortingformulier() {
     document.getElementById("kortingdialog").showModal();
