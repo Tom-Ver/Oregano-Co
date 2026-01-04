@@ -1,7 +1,35 @@
 let menuCache = null;
 let geselecteerdeMenuItem = null;
 
+let promocodes = [
+    {code: "PIZZA5", korting: 5, oneTime: true},
+    {code: "PASTA10", korting: 10, oneTime: false},
+    {code: "SALAD15", korting: 15, oneTime: true}
+];
+
+let actievekorting= null;
+
+function controleerkorting() {
+    const invulcode = document.getElementById("kortingcode").value.trim().toUpperCase();
+    const kortingcontroleren = document.getElementById("kortingcontroleren");
+
+    const gevondencode = promocodes.find(p=> p.code === invulcode);
+    if (gevondencode) {
+        actievekorting = gevondencode;
+        alert(`Kortingscode ${gevondencode.code} geaccepteerd! Je krijgt ${gevondencode.korting}% korting.`);
+        sluitkortingformulier();
+    } else {
+        alert("Ongeldige kortingscode. Probeer het opnieuw.");
+    }
+}
+
+leegWinkelwagenBijRefresh();
 init();
+
+function leegWinkelwagenBijRefresh() {
+    localStorage.removeItem("winkelwagen");
+}
+
 
 async function init() {
     try {
@@ -15,11 +43,11 @@ async function init() {
 
 function menuLaden(menu) {
     const sectionMap = {
-        pizza: "pizzaSubsection",
-        pasta: "pastaSubsection",
-        salade: "saladeSubsection",
-        dessert: "dessertSubsection",
-        dranken: "drankenSubsection"
+        pizza: "pizzaSection",
+        pasta: "pastaSection",
+        salade: "saladeSection",
+        dessert: "dessertSection",
+        dranken: "drankenSection"
     };
     for (let i = 0; i < menu.length; i++) {
         switch (menu[i].category.toLowerCase()) {
@@ -83,8 +111,17 @@ function maakMenuItem(menuItem, sectionId) {
     article.appendChild(title);
     article.appendChild(prijs);
     article.appendChild(categoryElement);
-    article.addEventListener("click", () => { openItemOptiesDialog(menuItem); });
+
+    const winkelwagenKnop = document.createElement("img");
+    winkelwagenKnop.src = "afbeeldingen/shopping-cart-svgrepo-com.svg";
+    winkelwagenKnop.alt = "Voeg toe aan winkelwagen";
+    winkelwagenKnop.style.width = "20px";
+    winkelwagenKnop.style.height = "20px";
+    winkelwagenKnop.style.cursor = "pointer";
+    winkelwagenKnop.addEventListener("click", () => openItemOptiesDialog(menuItem));
+    article.appendChild(winkelwagenKnop);
     productenElement.appendChild(article);
+    winkelwagenKnop.classList.add("winkelwagenKnop");
 }
 
 function filterVeggie(keuze) {
@@ -130,7 +167,7 @@ function openItemOptiesDialog(menuItem) {
         const checkbox = document.createElement("input");
 
         checkbox.type = "checkbox";
-        checkbox.value = optie.id;
+        checkbox.value = optie.key;
         checkbox.dataset.price = optie.price;
         checkbox.dataset.label = optie.label;
 
@@ -153,9 +190,8 @@ function setEventListeners() {
 
     //Opties dialoog toevoegen knop
     document.getElementById("toevoegenKnop").addEventListener("click", () => {
-    if (!geselecteerdeMenuItem) return;
-    itemToevoegen(geselecteerdeMenuItem);}); 
-    
+        if (!geselecteerdeMenuItem) return;
+        itemToevoegen(geselecteerdeMenuItem);});
 }
 
 function itemToevoegen(menuItem) {
@@ -176,19 +212,25 @@ function itemToevoegen(menuItem) {
         menuItemPrijs: menuItem.price,
         geselecteerdeOpties: geselecteerdeOpties,
         totalePrijs: totalePrijs,
-        aantal: 1
+        aantal: 1,
+        maxAantal: menuItem.maxPerOrder || 5
     };
 
     // Haal huidige winkelwagen op
     const winkelwagen = getWinkelwagen();
 
     // Check of item al bestaat (zelfde menuItemId + dezelfde geselecteerde opties)
-    const bestaandItem = winkelwagen.find(item => 
+    const bestaandItem = winkelwagen.find(item =>
         item.menuItemId === winkelWagenItem.menuItemId &&
         JSON.stringify(item.geselecteerdeOpties.sort()) === JSON.stringify(winkelWagenItem.geselecteerdeOpties.sort())
     );
 
     if (bestaandItem) {
+
+        if (bestaandItem.aantal + 1 > bestaandItem.maxAantal) {
+            toonMaximumMelding(bestaandItem.maxAantal, menuItem.name);
+            return;
+        }
         // Item bestaat al, verhoog aantal
         bestaandItem.aantal += 1;
         // Optioneel: totalePrijs bijwerken
@@ -201,6 +243,14 @@ function itemToevoegen(menuItem) {
     saveWinkelwagen(winkelwagen);
     // 5. Dialog sluiten
     document.getElementById("optiesDialoog").close();
+}
+
+function toonMaximumMelding(maxAantal, itemNaam) {
+    const alertDiv = document.getElementById("max-alert");
+
+    if (!alertDiv) return;
+
+    alertDiv.innerText = `Je kunt niet meer dan ${maxAantal} van ${itemNaam} toevoegen aan je winkelmand.`;
 }
 
 function getWinkelwagen() {
@@ -231,7 +281,105 @@ async function getMenuItemById(id) {
 }
 
 function toonWinkelwagen() {
-    // Placeholder functie om winkelwagen te tonen
     const winkelwagen = getWinkelwagen();
-    alert("Winkelwagen: " + JSON.stringify(winkelwagen));
+
+    if (winkelwagen.length === 0) {
+        alert("Je winkelmand is leeg.");
+        return;
+    }
+
+    let totaalPrijs = 0;
+    let boodschap = "Jouw winkelmand:";
+
+    winkelwagen.forEach(item => {
+        boodschap += `${item.aantal}x ${item.name} -€${item.totalePrijs.toFixed(2)}\n`;
+
+        if (item.geselecteerdeOpties.length > 0) {
+            item.geselecteerdeOpties.forEach(optie => {
+                boodschap += `   + ${optie.label} (€${optie.price})\n`;
+            });
+        }
+
+        totaalPrijs += item.totalePrijs;
+
+    });
+
+    let kortingbedrag = 0;
+
+    if (actievekorting) {
+        kortingbedrag = totaalPrijs * (actievekorting.korting / 100);
+        totaalPrijs -= kortingbedrag;
+        boodschap += `korting (${actievekorting.code}): -€${kortingbedrag.toFixed(2)}\n`;
+    }
+
+    boodschap += `Totaalprijs: €${totaalPrijs.toFixed(2)}`;
+
+    alert(boodschap);
+
+    if (actievekorting && actievekorting.oneTime) {
+        promocodes = promocodes.filter(p => p.code !== actievekorting.code);
+        actievekorting = null;
+    }
+
+}
+
+const juistegebruikersnaam = "oregano2025";
+const juistewachtwoord = "LekkerstePizza!";
+
+function login() {
+    const gebruikersnaam = document.getElementById("gebruikersnaam").value;
+    const wachtwoord = document.getElementById("wachtwoord").value;
+
+    if (gebruikersnaam === juistegebruikersnaam &&
+        wachtwoord === juistewachtwoord) {
+        alert("Inloggen succesvol!");
+    } else { alert("Inloggen mislukt, foutieve gebruikersnaam of wachtwoord.");
+    }
+}
+
+function foutBericht(id) {
+    const berichten = {
+        naam: 'vul je naam in',
+        email: 'vul een geldige email in',
+        telefoon: 'vul je telefoonnummer in',
+        datum: 'kies een datum',
+        tijd: 'kies een tijd',
+        aantalPersonen: 'vul minimaal 1 persoon in'
+    };
+    return berichten[id] || 'Dit veld is verplicht.';
+    }
+
+    const form = document.querySelector(".reserveringsformulier");
+
+    if (form) {
+        form.addEventListener("submit", async e => {
+            e.preventDefault();
+            let valid = true;
+
+            form.querySelectorAll('.foutmelding').forEach(span=> span.textContent='');
+
+            const velden = ['naam', 'email', 'telefoon', 'datum', 'tijd', 'aantalPersonen'];
+
+            velden.forEach(id => {
+                const input = document.getElementById(id);
+                const foutSpan = input.nextElementSibling;
+
+                if (!input.value.trim() ||
+                    (id === 'email' && !/^[^]+@[^ ]+\.[a-z]{2,3}$/.test(input.value)) ||
+                    (id === 'aantalPersonen' && Number(input.value) < 1)) {
+                    foutSpan.textContent = foutBericht(id);
+                    valid = false;
+                }
+            });
+
+            if(valid) form.submit();
+        });
+    }
+
+function openkortingformulier() {
+    document.getElementById("kortingdialog").showModal();
+}
+
+function sluitkortingformulier() {
+    document.getElementById("kortingdialog").close();
 }
