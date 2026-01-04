@@ -9,17 +9,28 @@
 <body>
 <header>
     <img class="logo" src="afbeeldingen/logo.png" height="50" width="312" alt="Logo Oregano & Co."/>
-    <ul class="navigatiebalk">
-        <li>
-            <a href="#producten">Menu</a>
-        </li>
-        <li>
-            <a href="#contact">Contact</a>
-        </li>
-        <li onclick="toonWinkelwagen()">
-            <img src="afbeeldingen/shopping-cart-svgrepo-com.svg" width="20" height="auto" alt="Winkelwagen logo">
-        </li>
-    </ul>
+    <nav>
+        <ul class="navigatiebalk">
+            <li>
+                <a href="index.html"><img src="afbeeldingen/startwit.svg" alt="start knop" width="20" height="auto"></a>
+            </li>
+            <li onclick="toonWinkelwagen()">
+                <img src="afbeeldingen/shopping-cart-svgrepo-com.svg" alt="Winkelwagen logo" width="20" height="auto">
+            </li>
+            <li>
+                <a href="inloggen.html"><img src="afbeeldingen/profilewit.svg" alt="inloggen logo" width="20" height="auto"></a>
+            </li>
+            <li>
+                <a href="#producten">Menu</a>
+            </li>
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+            <li>
+                <a href="boekingspagina.html">Reserveren</a>
+            </li>
+        </ul>
+    </nav>
 </header>
 <main>
     <section class="dagpromotie">
@@ -39,38 +50,70 @@
         <button onclick="sorteerPrijs('laag')">Prijs laag naar hoog</button>
     </div>
     <section id="producten">
-        <section id="pizzaSubsection"  class="producten">
+        <div id="max-alert"></div>
+        <section id="pizzaSection"  class="producten">
             <h2>Onze pizza's</h2>
         </section>
-        <section id="pastaSubsection"  class="producten">
+        <section id="pastaSection"  class="producten">
             <h2>Onze pasta's</h2>
         </section>
-        <section id="saladeSubsection"  class="producten">
+        <section id="saladeSection"  class="producten">
             <h2>Onze salades</h2>
         </section>
-        <section id="dessertSubsection"  class="producten">
+        <section id="dessertSection"  class="producten">
             <h2>Onze desserten</h2>
         </section>
-        <section id="drankenSubsection"  class="producten">
+        <section id="drankenSection"  class="producten">
             <h2>Onze dranken</h2>
         </section>
     </section>
-    <section id="contact" class="contact">
+    <dialog id="optiesDialoog">
+        <h2 id="optiesDialoogTitel">Wil je iets extra of juist niet?</h2>
+        <div id="optiesDialoogKeuze"></div>
+        <div class="optiesDialoogKnoppen">
+            <button id="toevoegenKnop">Toevoegen</button>
+            <button id="sluitenKnop">Sluiten</button>
+        </div>
+    </dialog>
 
-    </section>
+    <button class="kortingopenen" onclick="openkortingformulier()">Kortingscode toevoegen</button>
 
+    <dialog id="kortingdialog">
+
+        <form class="formdialog" action="/website-voorbeelden/forms/submit.html" method="post">
+            <img src="afbeeldingen/kortinggeel.svg" alt="Kortingcode afbeelding" width="50" height="50">
+            <h5>Vul hier je kortingscode in:</h5>
+            <p id="kortingcontroleren"></p>
+            <input type="text" id="kortingcode" name="kortingcode" required>
+            <div>
+                <button type="button" onclick="sluitkortingformulier()">Sluiten</button>
+                <button type="button" class="toevoegen" onclick="controleerkorting()">Voeg toe</button>
+            </div>
+        </form>
+    </dialog>
 </main>
 <footer>
-
-</footer>
-<dialog id="optiesDialoog">
-    <h2 id="optiesDialoogTitel">Wil je iets extra, of juist niet?</h2>
-    <div id="optiesDialoogKeuze"></div>
-    <div class="optiesDialoogKnoppen">
-        <button id="toevoegenKnop">Toevoegen</button>
-        <button id="sluitenKnop">Sluiten</button>
+    <div class="openingstijden">
+        <h3>Openingstijden</h3>
+        <ul>
+            <li>Maandag: Gesloten</li>
+            <li>Dinsdag: 11:00 - 22:00</li>
+            <li>Woensdag: 11:00 - 22:00</li>
+            <br>
+            <li>Donderdag: 11:00 - 22:00</li>
+            <li>Vrijdag: 11:00 - 23:00</li>
+            <li>Zaterdag: 11:00 - 23:00</li>
+            <li>Zondag: 11:00 - 21:00</li>
+        </ul>
     </div>
-</dialog>
+    <div class="contact" id="contact">
+        <h3>Contact</h3>
+        <p>Adres: Oreganostraat 1, 3473 Waanrode Telefoon: 04 25 25 25 25 Email: oregano&co@gmail.com</p>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2025 Oregano & Co. Alle rechten voorbehouden.</p>
+    </div>
+</footer>
+
 </body>
 </html>
-
